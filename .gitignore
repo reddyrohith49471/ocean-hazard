@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+oceanvenv311/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database files (if any)
+*.sqlite3
+
+# Ignore uploaded images if you don't want them in Git
+/static/uploads/
