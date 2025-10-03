@@ -1,0 +1,11 @@
+pandas
+numpy
+deep-translator
+emoji
+transformers
+torch
+tensorflow
+scikit-learn
+nltk
+pymongo
+flask

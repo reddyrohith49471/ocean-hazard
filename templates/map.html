@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ocean Hazard - Map Heatmap</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body { margin:0; padding:0; }
+        #map { height: 100vh; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+<script>
+    var map = L.map('map').setView([20.5937, 78.9629], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+    }).addTo(map);
+
+    fetch("{{ url_for('map_data') }}")
+    .then(response => response.json())
+    .then(data => {
+        var counts = {};
+        var locations = {}; // store one location name per lat/lon
+
+        data.forEach(p => {
+            var key = p.Latitude + ',' + p.Longitude;
+            counts[key] = counts[key] ? counts[key] + 1 : 1;
+            locations[key] = p.Location;  // store location name
+        });
+
+        var heatPoints = [];
+        Object.keys(counts).forEach(k => {
+            var latlon = k.split(',');
+            var lat = parseFloat(latlon[0]);
+            var lon = parseFloat(latlon[1]);
+            var intensity = counts[k];
+            var locationName = locations[k];
+
+            // Heatmap point
+            heatPoints.push([lat, lon, intensity]);
+
+            // Circle marker
+            var circle = L.circleMarker([lat, lon], {
+                radius: 10 + intensity*2,
+                fillColor: 'red',
+                color: 'darkred',
+                weight: 1,
+                fillOpacity: 0.6
+            }).addTo(map);
+
+            // Tooltip showing number of hazards AND location
+            circle.bindTooltip("Location: " + locationName + "<br>Hazards: " + intensity, {
+                permanent: false,
+                direction: 'top',
+                offset: [0, -5],
+                opacity: 0.9,
+                className: 'custom-tooltip'
+            });
+        });
+
+        // Heat layer
+        L.heatLayer(heatPoints, {
+            radius: 25,
+            blur: 15,
+            maxZoom: 17,
+            gradient: {0: 'yellow', 1: 'red'}
+        }).addTo(map);
+    })
+    .catch(error => console.error("Error fetching hazard data:", error));
+</script>
+</body>
+</html>
