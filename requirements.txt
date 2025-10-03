@@ -10,3 +10,4 @@ nltk
 pymongo
 flask
 gunicorn
+python-dotenv
