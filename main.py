@@ -22,8 +22,8 @@ nltk.download('wordnet')
 
 
 
-
-client = pymongo.MongoClient("mongodb+srv://reddyrohith20061902_db_user:12345@cluster0.h7s3hox.mongodb.net/")
+mongo_uri = os.environ.get("MONGO_URI")
+client = pymongo.MongoClient(mongo_uri)
 
 try:
     client.admin.command("ping")
