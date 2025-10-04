@@ -4,7 +4,7 @@ deep-translator
 emoji
 transformers
 torch
-tensorflow
+tensorflow-cpu
 scikit-learn
 nltk
 pymongo
