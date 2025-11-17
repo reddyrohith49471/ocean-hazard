@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ocean-hazard-backend
+    env: python
+    plan: free
+
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r backend/requirements.txt
+
+    startCommand: |
+      gunicorn app:app -b 0.0.0.0:$PORT
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+
+      - key: MONGO_URI
+        sync: false   # You will set this in Render dashboard (safe)
+
+    # Optional: auto deploy only on main branch
+    autoDeploy: true
