@@ -3,16 +3,18 @@ from werkzeug.utils import secure_filename
 import os
 import sys
 
-from pipeline.hazard_pipeline import hazard_pipeline
-from utils.geolocation import location_service
-from utils.validator import validator
-from logging.logging import logger
-from exception.exception import CustomException
+from src.pipeline.hazard_pipeline import hazard_pipeline
+from src.utils.geolocation import location_service
+from src.utils.validator import validator
+from src.logging.logging import logger
+from src.exception.exception import CustomException
 
 post_bp = Blueprint("posts", __name__)
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), "frontend/static/uploads")
+PROJECT_ROOT = os.path.abspath(os.path.join(os.getcwd(), ".."))
+UPLOAD_FOLDER = os.path.join(PROJECT_ROOT, "frontend/static/uploads")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 
 
 @post_bp.route("/add", methods=["POST"])
@@ -70,3 +72,11 @@ def add_post():
 
     except Exception as e:
         raise CustomException(e, sys)
+
+
+
+# ⭐ ADD THIS ROUTE (YOU MISSED IT)
+@post_bp.route("/view")
+def view_posts():
+    posts = list(current_app.db.collection.find({}, {"_id": 0}))
+    return render_template("posts.html", posts=posts)
