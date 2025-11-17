@@ -8,7 +8,12 @@ from src.exception.exception import CustomException
 class TextProcessor:
     def __init__(self):
         self.lem = WordNetLemmatizer()
-        self.stop = set(stopwords.words("english"))
+        ENGLISH_STOPWORDS = {
+            "a", "an", "the", "and", "or", "is", "are", "was", "were",
+            "in", "on", "at", "to", "from", "for", "by", "with", "of",
+            "that", "this", "it", "as", "be", "but", "if", "not"
+        }
+        self.stop = ENGLISH_STOPWORDS
 
     def preprocess(self, text):
         try:
