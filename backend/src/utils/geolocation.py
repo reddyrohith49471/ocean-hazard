@@ -1,6 +1,6 @@
 import requests
 import sys
-from exception.exception import CustomException
+from src.exception.exception import CustomException
 
 class GeoLocationService:
     def get_location(self, text):
