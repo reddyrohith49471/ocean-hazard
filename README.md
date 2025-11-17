@@ -266,9 +266,9 @@ pip install -r requirements.txt
 # 👤 Author
 
 **Reddy Rohith Kosinepalli**  
-AI/ML Engineer | Python Developer | Backend Developer  
+AI/ML Engineer
 - GitHub: https://github.com/reddyrohith49471  
-- LinkedIn: https://www.linkedin.com/in/reddy-rohith-kosinepalli  
+- LinkedIn: [https://www.linkedin.com/in/reddy-rohith-kosinepalli  ](https://www.linkedin.com/in/reddy-rohith-kosinepalli-b06613218/)
 
 ---
 
