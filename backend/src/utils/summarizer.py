@@ -1,6 +1,6 @@
 from transformers import pipeline
 import sys
-from exception.exception import CustomException
+from src.exception.exception import CustomException
 
 class Summarizer:
     def __init__(self):
