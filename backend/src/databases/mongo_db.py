@@ -8,7 +8,7 @@ class MongoDB:
     def __init__(self):
         try:
             self.client = pymongo.MongoClient(
-                "mongodb+srv://reddyrohith20061902_db_user:ocean-hazard@cluster0.h7s3hox.mongodb.net/"
+                "mongodb+srv://reddyrohith20061902_db_user:<db_password>@cluster0.h7s3hox.mongodb.net/"
             )
             self.client.admin.command("ping")
             logger.info("MongoDB connected.")
