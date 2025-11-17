@@ -3,7 +3,7 @@ import emoji
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import sys
-from exception.exception import CustomException
+from src.exception.exception import CustomException
 
 class TextProcessor:
     def __init__(self):
