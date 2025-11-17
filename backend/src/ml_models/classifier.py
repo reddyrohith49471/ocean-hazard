@@ -1,8 +1,8 @@
 import pickle
 import os
 import sys
-from exception.exception import CustomException
-from logging.logging import logger
+from src.exception.exception import CustomException
+from src.logging.logging import logger
 
 
 class HazardClassifier:
