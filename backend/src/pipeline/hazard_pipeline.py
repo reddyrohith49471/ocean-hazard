@@ -1,9 +1,9 @@
 import sys
-from utils.translator import translator
-from utils.text_processor import processor
-from ml_models.classifier import classifier
-from utils.summarizer import summarizer
-from exception.exception import CustomException
+from src.utils.translator import translator
+from src.utils.text_processor import processor
+from src.ml_models.classifier import classifier
+from src.utils.summarizer import summarizer
+from src.exception.exception import CustomException
 
 
 class HazardPipeline:
