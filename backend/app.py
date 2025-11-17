@@ -7,12 +7,12 @@ ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(ROOT_DIR, "src"))
 
 # Import blueprints
-from routes.home_routes import home_bp
-from routes.post_routes import post_bp
-from routes.map_routes import map_bp
+from src.routes.home_routes import home_bp
+from src.routes.post_routes import post_bp
+from src.routes.map_routes import map_bp
 
 # Import DB
-from databases.mongo_db import MongoDB
+from src.databases.mongo_db import MongoDB
 
 
 def create_app():
@@ -38,4 +38,4 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True, use_reloader=False)
