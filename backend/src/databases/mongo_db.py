@@ -1,15 +1,14 @@
 import pymongo
 import sys
-from exception.exception import CustomException
-from logging.logging import logger
+from src.exception.exception import CustomException
+from src.logging.logging import logger
 
 
 class MongoDB:
     def __init__(self):
+        self.mongo_uri = MONGO_URI
+        self.client = pymongo.MongoClient(self.mongo_uri)
         try:
-            self.client = pymongo.MongoClient(
-                "mongodb+srv://reddyrohith20061902_db_user:<db_password>@cluster0.h7s3hox.mongodb.net/"
-            )
             self.client.admin.command("ping")
             logger.info("MongoDB connected.")
         except Exception as e:
@@ -17,3 +16,4 @@ class MongoDB:
 
         self.db = self.client["Ocean_Hazard_DB"]
         self.collection = self.db["Hazard_posts"]
+
