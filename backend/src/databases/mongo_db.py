@@ -2,11 +2,14 @@ import pymongo
 import sys
 from src.exception.exception import CustomException
 from src.logging.logging import logger
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 class MongoDB:
     def __init__(self):
-        self.mongo_uri = MONGO_URI
+        self.mongo_uri = os.getenv("MONGO_URI")
         self.client = pymongo.MongoClient(self.mongo_uri)
         try:
             self.client.admin.command("ping")
