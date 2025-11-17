@@ -24,7 +24,7 @@
         maxZoom: 18,
     }).addTo(map);
 
-    fetch("{{ url_for('map_data') }}")
+    fetch("{{ url_for('map.map_data') }}")
     .then(response => response.json())
     .then(data => {
         var counts = {};
